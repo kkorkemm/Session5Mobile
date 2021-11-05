@@ -4,5 +4,29 @@
              x:Class="Session5Mobile.App">
     <Application.Resources>
 
+        <Color x:Key="RedColor">#e2231a</Color>
+        <Color x:Key="BlueColor">#005cb9</Color>
+
+        <Style TargetType="Button" x:Key="BaseButton">
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="Padding" Value="10, 5"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="BorderWidth" Value="0"/>
+        </Style>
+
+        <Style x:Key="BlueButton" TargetType="Button" BasedOn="{StaticResource BaseButton}">
+            <Setter Property="BackgroundColor" Value="{StaticResource BlueColor}"/>
+        </Style>
+
+        <Style x:Key="RedButton" TargetType="Button" BasedOn="{StaticResource BaseButton}">
+            <Setter Property="BackgroundColor" Value="{StaticResource RedColor}"/>
+        </Style>
+
+        <Style TargetType="Label">
+            <Setter Property="FontFamily" Value="Helvetica"/>
+            <Setter Property="FontAttributes" Value="None"/>
+        </Style>
+        
     </Application.Resources>
 </Application>

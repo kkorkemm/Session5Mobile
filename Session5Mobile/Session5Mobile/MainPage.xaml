@@ -3,22 +3,98 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Session5Mobile.MainPage">
 
-    <StackLayout>
-        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
-            <Label Text="Welcome to Xamarin.Forms!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
-        </Frame>
-        <Label Text="Start developing now" FontSize="Title" Padding="30,10,30,10"/>
-        <Label Text="Make changes to your XAML file and save to see your UI update in the running app with XAML Hot Reload. Give it a try!" FontSize="16" Padding="30,0,30,0"/>
-        <Label FontSize="16" Padding="30,24,30,0">
-            <Label.FormattedText>
-                <FormattedString>
-                    <FormattedString.Spans>
-                        <Span Text="Learn more at "/>
-                        <Span Text="https://aka.ms/xamarin-quickstart" FontAttributes="Bold"/>
-                    </FormattedString.Spans>
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
-    </StackLayout>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Combobox and edit button -->
+        <Grid Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Label Text="Well Name:"
+                   VerticalOptions="Center"/>
+
+            <Picker x:Name="ComboWells"
+                    ItemDisplayBinding="{Binding WellName}"
+                    Grid.Column="1"
+                    VerticalOptions="Center"
+                    Title="Wells"
+                    SelectedIndexChanged="ComboWells_SelectedIndexChanged"/>
+
+            <Button x:Name="BtnEdit"
+                    Text="Edit"
+                    Style="{StaticResource BlueButton}"
+                    Grid.Column="2"
+                    Clicked="BtnEdit_Clicked"/>
+
+        </Grid>
+
+        <ListView Grid.Row="1"
+                  HasUnevenRows="True"
+                  Margin="10"
+                  x:Name="ListLayers">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid HeightRequest="{Binding Height}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid BackgroundColor="{Binding Color}">
+                                <Label Text="{Binding RockName}"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"
+                                       HorizontalTextAlignment="Center"
+                                       VerticalTextAlignment="Center"
+                                       FontAttributes="Bold"
+                                       FontSize="14"/>
+                            </Grid>
+                            <Grid Grid.Column="1">
+                                <Label Text="{Binding StartNotZeroPoint}"
+                                       VerticalOptions="Start"/>
+                                <Label Text="{Binding EndPoint}"
+                                       VerticalOptions="End"/>
+                            </Grid>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Grid Grid.Row="2">
+            
+            <StackLayout Orientation="Horizontal"
+                         Margin="10"
+                         HorizontalOptions="Start">
+                <Label Text="Well Capacity: "
+                       Margin="0, 0 ,5 ,0"
+                       VerticalOptions="Center"/>
+                <Label x:Name="TextCapacity"
+                       FontAttributes="Bold"
+                       VerticalOptions="Center"/>
+            </StackLayout>
+
+            <Button x:Name="BtnAdd"
+                    Text="+"
+                    Style="{StaticResource BlueButton}"
+                    HeightRequest="50"
+                    WidthRequest="50"
+                    CornerRadius="50"
+                    Margin="10"
+                    HorizontalOptions="End"
+                    Clicked="BtnAdd_Clicked"
+                    FontSize="20"/>
+
+        </Grid>
+        
+    </Grid>
 
 </ContentPage>
