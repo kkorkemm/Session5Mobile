@@ -23,11 +23,6 @@ namespace Session5Mobile
             UpdateWell();
         }
 
-        private void BtnEdit_Clicked(object sender, EventArgs e)
-        {
-
-        }
-
         /// <summary>
         /// При выборе well из комбобокса
         /// </summary>
@@ -45,14 +40,36 @@ namespace Session5Mobile
 
             List<WellLayers> layers = AppData.GetWellLayers().Where(p => p.WellID == well.ID).ToList();
 
+            int point = layers.LastOrDefault().EndPoint;
+
+            WellLayers oilLayer = new WellLayers()
+            {
+                StartPoint = point,
+                EndPoint = point + well.GasOilDepth
+            };
+
+            layers.Add(oilLayer);
+
             ListLayers.ItemsSource = layers.OrderBy(p => p.StartPoint).ToList();
 
             TextCapacity.Text = well.Capacity + " m3";
         }
 
-        private void BtnAdd_Clicked(object sender, EventArgs e)
+        /// <summary>
+        /// Добавление well
+        /// </summary>
+        private async void BtnAdd_Clicked(object sender, EventArgs e)
         {
-
+            await Navigation.PushAsync(new AddEditWellPage(null));
         }
-    } 
+
+        /// <summary>
+        /// Редактирование well
+        /// </summary>
+        private async void BtnEdit_Clicked(object sender, EventArgs e)
+        {
+            Wells selectedwell = ComboWells.SelectedItem as Wells;
+            await Navigation.PushAsync(new AddEditWellPage(selectedwell));
+        }
+    }
 }

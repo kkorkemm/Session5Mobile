@@ -34,8 +34,9 @@
                     Grid.Column="2"
                     Clicked="BtnEdit_Clicked"/>
 
-        </Grid>
-
+        </Grid> 
+        
+        <!--Layers diagram (it is listview actually)-->
         <ListView Grid.Row="1"
                   HasUnevenRows="True"
                   Margin="10"
@@ -48,14 +49,15 @@
                                 <ColumnDefinition Width="4*"/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <Grid BackgroundColor="{Binding Color}">
+                            <Grid BackgroundColor="{Binding BackgroundColor}">
                                 <Label Text="{Binding RockName}"
                                        HorizontalOptions="Center"
                                        VerticalOptions="Center"
                                        HorizontalTextAlignment="Center"
                                        VerticalTextAlignment="Center"
                                        FontAttributes="Bold"
-                                       FontSize="14"/>
+                                       FontSize="14"
+                                       TextColor="{Binding TextColor}"/>
                             </Grid>
                             <Grid Grid.Column="1">
                                 <Label Text="{Binding StartNotZeroPoint}"
@@ -68,7 +70,8 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-
+        
+         <!-- Capacity and add button-->
         <Grid Grid.Row="2">
             
             <StackLayout Orientation="Horizontal"
