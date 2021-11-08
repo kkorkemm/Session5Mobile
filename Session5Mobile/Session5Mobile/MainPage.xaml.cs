@@ -15,7 +15,10 @@ namespace Session5Mobile
         public MainPage()
         {
             InitializeComponent();
+        }
 
+        private void ContentPage_Appearing(object sender, EventArgs e)
+        {
             List<Wells> wells = AppData.GetWells();
             ComboWells.ItemsSource = wells;
             ComboWells.SelectedIndex = 0;
@@ -37,6 +40,9 @@ namespace Session5Mobile
         private void UpdateWell()
         {
             Wells well = ComboWells.SelectedItem as Wells;
+
+            if (well == null)
+                well = AppData.GetWells().FirstOrDefault();
 
             List<WellLayers> layers = AppData.GetWellLayers().Where(p => p.WellID == well.ID).ToList();
 

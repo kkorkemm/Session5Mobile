@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Session5Mobile.MainPage">
+             x:Class="Session5Mobile.MainPage"
+             Appearing="ContentPage_Appearing">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -62,7 +63,7 @@
                             <Grid Grid.Column="1">
                                 <Label Text="{Binding StartNotZeroPoint}"
                                        VerticalOptions="Start"/>
-                                <Label Text="{Binding EndPoint}"
+                                <Label Text="{Binding Path=EndPoint, StringFormat='{0} m'}"
                                        VerticalOptions="End"/>
                             </Grid>
                         </Grid>
